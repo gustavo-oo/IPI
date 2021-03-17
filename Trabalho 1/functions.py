@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-#Função que reduz e inteporla a imagem
+#Questão 2.1: Função que reduz e inteporla a imagem
 def dec_int(img, n):
     height, width = img.shape[:2] #Largura e Altura da imagem
 
@@ -26,7 +26,7 @@ def dec_int(img, n):
     return resized, interpolated
 
 
-#Função que aprimora a imagem
+#Questão 2.2: Função que aprimora a imagem
 def egde_improv(img): #Transformação Logarítmica
     
     improved = np.array(np.max(img)*(img/np.max(img))**2, dtype = np.uint8)   

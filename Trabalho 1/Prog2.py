@@ -3,9 +3,13 @@ import numpy as np
 
 #Funções auxiliares:
 
-#Função que realiza a tranformação gamma
-def power_law(img, gamma):
-    return np.array(255*(img/255)**gamma, dtype = np.uint8)
+#Função que realiza a tranformação gamma e mostra o resultado
+def power_law(img):
+    gamma = [0.3, 0.8, 1.5, 2.0]
+    for g in gamma:
+        cv.imshow(f'Gamma = {g}', np.array(np.max(img)*(img/np.max(img))**g, dtype = np.uint8))
+        cv.waitKey(0)
+    cv.destroyAllWindows()
 
 #Função que realiza a equalização de histograma
 def equalize(img):
@@ -19,36 +23,27 @@ university = cv.imread('university.png')
 #Questão 2.1:
 #É realizada o realce power-law sobre cada imagem (nome_imagem, valor_gamma)
 # e logo após mostrado na tela
-pw_car = power_law(car, 2.0)
-cv.imshow("Car - Gamma: 2.0", pw_car)
-cv.waitKey(0)
-
-pw_crowd = power_law(crowd, 0.8)
-cv.imshow("Crowd - Gamma: 0.8",pw_crowd)
-cv.waitKey(0)
-
-pw_university = power_law(university, 0.3)
-cv.imshow("University - Gamma: 0.3", pw_university)
-cv.waitKey(0)
-cv.destroyAllWindows()
-
+power_law(car)
+power_law(crowd)
+power_law(university)
 
 #Questão 2.2:
-#É realiziada a equalização de histograma sobre cada imagem e logo após mostrado na tela
+#É realiziada a equalização de cada imagem e logo após mostrada na tela
 equalized_car = equalize(car)
+equalized_crowd = equalize(crowd)
+equalized_university = equalize(university)
+
 cv.imshow('equalized_car' , equalized_car)
 cv.waitKey(0)
 
-equalized_crowd = equalize(crowd)
 cv.imshow('equalized_crowd' , equalized_crowd)
 cv.waitKey(0)
 
-equalized_university = equalize(university)
 cv.imshow('equalized_university', equalized_university)
 cv.waitKey(0)
 cv.destroyAllWindows()
 
-#Questão 2.3
+#Questão 2.3: Plotar gráficos de histograma e CDF antes e após a equalização da imagem
 from matplotlib import pyplot as plt 
 
 #Histograma antes da equalização
@@ -75,5 +70,3 @@ cdf = equalized_carHist.cumsum()
 plt.subplots(num = 'CDF equalizado - car.png')
 plt.plot(cdf)
 plt.show()
-
-
