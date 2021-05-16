@@ -5,7 +5,6 @@ from functions import dec_int, egde_improv
 
 #Leitura da imagem e definição do fator de redução
 img = cv.imread('test80.jpg')
-moon = cv.imread('moon.jpg')
 n = 6
 
 #Extração de altura e largura da imagem para as funções de redução e interpolação cúbica
