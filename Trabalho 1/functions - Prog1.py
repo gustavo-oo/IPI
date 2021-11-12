@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-#Questão 2.1: Função que reduz e inteporla a imagema
+#Questão 2.1: Função que reduz e inteporla a imagem
 def dec_int(img, n):
     height, width = img.shape[:2] #Largura e Altura da imagem
 
